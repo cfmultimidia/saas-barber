@@ -66,10 +66,28 @@ export default function ClientBooking() {
 
     const loadAvailableSlots = async () => {
         try {
-            const response = await api.get(
-                `/appointments/available-slots?professional_id=${formData.professionalId}&date=${formData.date}&service_id=${formData.serviceId}`
-            );
-            setAvailableSlots(response.data || []);
+            if (formData.professionalId === 'any') {
+                // Fetch slots for all professionals and combine available times
+                const allSlots = new Set();
+                for (const prof of professionals) {
+                    const response = await api.get(
+                        `/appointments/available-slots/${prof.id}/${formData.date}?service_id=${formData.serviceId}`
+                    );
+                    (response.data || [])
+                        .filter(slot => slot.available)
+                        .forEach(slot => allSlots.add(slot.time));
+                }
+                setAvailableSlots([...allSlots].sort());
+            } else {
+                const response = await api.get(
+                    `/appointments/available-slots/${formData.professionalId}/${formData.date}?service_id=${formData.serviceId}`
+                );
+                // Backend returns [{time, available}] - filter available and extract time strings
+                const slots = (response.data || [])
+                    .filter(slot => slot.available)
+                    .map(slot => slot.time);
+                setAvailableSlots(slots);
+            }
         } catch (error) {
             console.error('Error loading slots:', error);
             setAvailableSlots([]);
