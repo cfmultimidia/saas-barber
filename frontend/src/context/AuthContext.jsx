@@ -21,12 +21,12 @@ export function AuthProvider({ children }) {
     const loadUser = async () => {
         try {
             const response = await api.get('/auth/me');
-            if (response.data.success) {
-                setUser(response.data.data.user);
+            if (response.success) {
+                setUser(response.data.user);
                 setAdditionalData({
-                    salon: response.data.data.salon,
-                    professional: response.data.data.professional,
-                    client: response.data.data.client,
+                    salon: response.data.salon,
+                    professional: response.data.professional,
+                    client: response.data.client,
                 });
             }
         } catch (error) {
@@ -40,27 +40,27 @@ export function AuthProvider({ children }) {
 
     const login = async (email, password) => {
         const response = await api.post('/auth/login', { email, password });
-        if (response.data.success) {
-            const { user, accessToken, refreshToken, salon, professional, client } = response.data.data;
+        if (response.success) {
+            const { user, accessToken, refreshToken, salon, professional, client } = response.data;
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('refreshToken', refreshToken);
             setUser(user);
             setAdditionalData({ salon, professional, client });
             return user;
         }
-        throw new Error(response.data.message || 'Login failed');
+        throw new Error(response.message || 'Login failed');
     };
 
     const register = async (data) => {
         const response = await api.post('/auth/register', data);
-        if (response.data.success) {
-            const { user, accessToken, refreshToken } = response.data.data;
+        if (response.success) {
+            const { user, accessToken, refreshToken } = response.data;
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('refreshToken', refreshToken);
             setUser(user);
             return user;
         }
-        throw new Error(response.data.message || 'Registration failed');
+        throw new Error(response.message || 'Registration failed');
     };
 
     const logout = async () => {
@@ -79,11 +79,11 @@ export function AuthProvider({ children }) {
 
     const updateProfile = async (data) => {
         const response = await api.put('/auth/profile', data);
-        if (response.data.success) {
-            setUser(response.data.data.user);
-            return response.data.data.user;
+        if (response.success) {
+            setUser(response.data.user);
+            return response.data.user;
         }
-        throw new Error(response.data.message || 'Update failed');
+        throw new Error(response.message || 'Update failed');
     };
 
     const value = {

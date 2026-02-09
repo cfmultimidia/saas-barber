@@ -7,3 +7,5 @@ data/
 dist/
 .cache/
 *.log
+.netlify/
+Sem Título.rtf
