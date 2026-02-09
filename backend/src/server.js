@@ -4,6 +4,16 @@ import cors from 'cors';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { setupSocketHandlers } from './socket.js';
+import db from './db.js';
+
+// Auto-seed: populate database on first run if empty
+const userCount = db.prepare('SELECT COUNT(*) as count FROM users').get();
+if (userCount.count === 0) {
+    console.log('📦 Empty database detected, running initial seed...');
+    await import('./seeds/seed.js');
+} else {
+    console.log(`📦 Database has ${userCount.count} users, skipping seed.`);
+}
 
 // Import routes
 import authRoutes from './routes/auth.js';

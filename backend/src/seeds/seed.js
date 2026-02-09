@@ -4,21 +4,33 @@ import db from '../db.js';
 
 console.log('🌱 Starting database seed...');
 
-// Clear existing data
-db.exec(`
-  DELETE FROM refresh_tokens;
-  DELETE FROM notifications;
-  DELETE FROM reviews;
-  DELETE FROM appointments;
-  DELETE FROM professional_services;
-  DELETE FROM professional_days_off;
-  DELETE FROM professional_schedules;
-  DELETE FROM services;
-  DELETE FROM professionals;
-  DELETE FROM clients;
-  DELETE FROM salons;
-  DELETE FROM users;
-`);
+// Check if database already has data - skip seed if so
+const existingUsers = db.prepare('SELECT COUNT(*) as count FROM users').get();
+if (existingUsers.count > 0) {
+    console.log('✅ Database already has data, skipping seed. Use --force to re-seed.');
+    console.log(`   Found ${existingUsers.count} users in the database.`);
+    process.exit(0);
+}
+
+// Only clear and re-seed if --force flag is passed or database is empty
+const forceReseed = process.argv.includes('--force');
+if (forceReseed) {
+    console.log('⚠️  Force re-seed requested. Clearing existing data...');
+    db.exec(`
+      DELETE FROM refresh_tokens;
+      DELETE FROM notifications;
+      DELETE FROM reviews;
+      DELETE FROM appointments;
+      DELETE FROM professional_services;
+      DELETE FROM professional_days_off;
+      DELETE FROM professional_schedules;
+      DELETE FROM services;
+      DELETE FROM professionals;
+      DELETE FROM clients;
+      DELETE FROM salons;
+      DELETE FROM users;
+    `);
+}
 
 const passwordHash = await bcrypt.hash('123456', 10);
 
