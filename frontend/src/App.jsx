@@ -2,8 +2,10 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { AppProvider } from './context/AppContext';
 
+// Unified Login
+import UnifiedLogin from './pages/Login';
+
 // Client Pages
-import ClientLogin from './pages/client/Login';
 import ClientSignup from './pages/client/Signup';
 import ClientDashboard from './pages/client/Dashboard';
 import ClientSearch from './pages/client/Search';
@@ -12,7 +14,6 @@ import ClientBooking from './pages/client/Booking';
 import ClientProfile from './pages/client/Profile';
 
 // Admin Pages
-import AdminLogin from './pages/admin/Login';
 import AdminDashboard from './pages/admin/Dashboard';
 import AdminCalendar from './pages/admin/Calendar';
 import AdminProfessionals from './pages/admin/Professionals';
@@ -22,7 +23,6 @@ import AdminReports from './pages/admin/Reports';
 import AdminSettings from './pages/admin/Settings';
 
 // Professional Pages
-import ProfessionalLogin from './pages/professional/Login';
 import ProfessionalDashboard from './pages/professional/Dashboard';
 import ProfessionalSchedule from './pages/professional/Schedule';
 import ProfessionalReviews from './pages/professional/Reviews';
@@ -45,8 +45,15 @@ function App() {
                         {/* Home - Redirect to client portal */}
                         <Route path="/" element={<Navigate to="/cliente" replace />} />
 
+                        {/* Unified Login */}
+                        <Route path="/login" element={<UnifiedLogin />} />
+
+                        {/* Backward compatibility - redirect old login routes */}
+                        <Route path="/cliente/login" element={<Navigate to="/login" replace />} />
+                        <Route path="/admin/login" element={<Navigate to="/login" replace />} />
+                        <Route path="/profissional/login" element={<Navigate to="/login" replace />} />
+
                         {/* Client Portal */}
-                        <Route path="/cliente/login" element={<ClientLogin />} />
                         <Route path="/cliente/cadastro" element={<ClientSignup />} />
                         <Route path="/cliente" element={<ClientLayout />}>
                             <Route index element={<ClientDashboard />} />
@@ -61,7 +68,6 @@ function App() {
                         </Route>
 
                         {/* Admin Portal */}
-                        <Route path="/admin/login" element={<AdminLogin />} />
                         <Route path="/admin" element={
                             <ProtectedRoute allowedTypes={['salon']}>
                                 <AdminLayout />
@@ -77,7 +83,6 @@ function App() {
                         </Route>
 
                         {/* Professional Portal */}
-                        <Route path="/profissional/login" element={<ProfessionalLogin />} />
                         <Route path="/profissional" element={
                             <ProtectedRoute allowedTypes={['professional']}>
                                 <ProfessionalLayout />

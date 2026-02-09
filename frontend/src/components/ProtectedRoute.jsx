@@ -19,15 +19,7 @@ export default function ProtectedRoute({ children, allowedTypes = [] }) {
     }
 
     if (!isAuthenticated) {
-        // Redirect to appropriate login based on the route
-        const path = window.location.pathname;
-        if (path.startsWith('/admin')) {
-            return <Navigate to="/admin/login" replace />;
-        }
-        if (path.startsWith('/profissional')) {
-            return <Navigate to="/profissional/login" replace />;
-        }
-        return <Navigate to="/cliente/login" replace />;
+        return <Navigate to="/login" replace />;
     }
 
     if (allowedTypes.length > 0 && !allowedTypes.includes(user.type)) {

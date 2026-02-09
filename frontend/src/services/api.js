@@ -36,7 +36,7 @@ class ApiService {
                     // Redirect to login
                     localStorage.removeItem('accessToken');
                     localStorage.removeItem('refreshToken');
-                    window.location.href = '/cliente/login';
+                    window.location.href = '/login';
                     throw new Error('Session expired');
                 }
             }

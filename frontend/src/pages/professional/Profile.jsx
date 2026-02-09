@@ -15,7 +15,7 @@ export default function ProfessionalProfile() {
     const [form, setForm] = useState({ name: professional?.name || user?.name || '', phone: professional?.phone || '', specialty: professional?.specialty || '', bio: professional?.bio || '' });
 
     const handleSave = async () => { /* Update profile API call */ setEditModal(false); };
-    const handleLogout = async () => { await logout(); navigate('/profissional/login'); };
+    const handleLogout = async () => { await logout(); navigate('/login'); };
 
     return (
         <div className="prof-profile">

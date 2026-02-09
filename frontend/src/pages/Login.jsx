@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
-import Button from '../../components/ui/Button';
-import Input from '../../components/ui/Input';
+import { useAuth } from '../context/AuthContext';
+import Button from '../components/ui/Button';
+import Input from '../components/ui/Input';
 import './Login.css';
 
-export default function ClientLogin() {
+export default function UnifiedLogin() {
     const navigate = useNavigate();
     const { login } = useAuth();
     const [email, setEmail] = useState('');
@@ -40,7 +40,7 @@ export default function ClientLogin() {
                 <div className="auth-header">
                     <div className="auth-logo">✂️</div>
                     <h1 className="auth-title">AgendaFácil</h1>
-                    <p className="auth-subtitle">Entre para agendar seu atendimento</p>
+                    <p className="auth-subtitle">Entre na sua conta</p>
                 </div>
 
                 <form className="auth-form" onSubmit={handleSubmit}>
@@ -71,7 +71,7 @@ export default function ClientLogin() {
                             <input type="checkbox" />
                             <span>Lembrar-me</span>
                         </label>
-                        <Link to="/cliente/recuperar" className="auth-forgot">
+                        <Link to="/recuperar-senha" className="auth-forgot">
                             Esqueci minha senha
                         </Link>
                     </div>
@@ -95,16 +95,6 @@ export default function ClientLogin() {
                     <p>Não tem conta?</p>
                     <Link to="/cliente/cadastro" className="auth-link">
                         Criar conta grátis
-                    </Link>
-                </div>
-
-                <div className="auth-portals">
-                    <Link to="/admin/login" className="portal-link">
-                        Sou dono de salão
-                    </Link>
-                    <span className="portal-divider">•</span>
-                    <Link to="/profissional/login" className="portal-link">
-                        Sou profissional
                     </Link>
                 </div>
             </div>

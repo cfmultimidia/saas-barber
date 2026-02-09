@@ -106,21 +106,3 @@
     font-weight: var(--font-weight-semibold);
     margin-left: var(--spacing-xs);
 }
-
-.auth-portals {
-    display: flex;
-    justify-content: center;
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-xl);
-    padding-top: var(--spacing-lg);
-    border-top: 1px solid var(--color-border);
-}
-
-.portal-link {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-secondary);
-}
-
-.portal-divider {
-    color: var(--color-text-muted);
-}

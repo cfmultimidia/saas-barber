@@ -42,7 +42,7 @@ export default function ClientLayout() {
                                 </div>
                             </div>
                         ) : (
-                            <button className="header-login" onClick={() => navigate('/cliente/login')}>
+                            <button className="header-login" onClick={() => navigate('/login')}>
                                 Entrar
                             </button>
                         )}

@@ -242,7 +242,7 @@ export default function ClientDashboard() {
                                 <Button variant="primary" onClick={() => navigate('/cliente/cadastro')}>
                                     Criar Conta
                                 </Button>
-                                <Button variant="outline" onClick={() => navigate('/cliente/login')}>
+                                <Button variant="outline" onClick={() => navigate('/login')}>
                                     Entrar
                                 </Button>
                             </div>

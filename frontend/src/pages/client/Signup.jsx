@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
-import './Login.css'; // Reuse login styles
+import '../Login.css'; // Reuse unified login styles
 
 export default function ClientSignup() {
     const navigate = useNavigate();
@@ -112,7 +112,7 @@ export default function ClientSignup() {
 
                 <div className="auth-footer" style={{ marginTop: 'var(--spacing-lg)' }}>
                     <p>Já tem conta?</p>
-                    <Link to="/cliente/login" className="auth-link">
+                    <Link to="/login" className="auth-link">
                         Faça login
                     </Link>
                 </div>

@@ -78,7 +78,7 @@ export default function ClientBooking() {
 
     const handleSubmit = async () => {
         if (!isAuthenticated) {
-            navigate('/cliente/login?redirect=' + encodeURIComponent(window.location.pathname));
+            navigate('/login?redirect=' + encodeURIComponent(window.location.pathname));
             return;
         }
 

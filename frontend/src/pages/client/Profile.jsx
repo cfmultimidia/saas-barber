@@ -32,7 +32,7 @@ export default function ClientProfile() {
 
     const handleLogout = async () => {
         await logout();
-        navigate('/cliente/login');
+        navigate('/login');
     };
 
     return (

@@ -21,7 +21,7 @@ export default function ProfessionalLayout() {
     ];
 
     const isActive = (path) => path === '/profissional' ? location.pathname === '/profissional' : location.pathname.startsWith(path);
-    const handleLogout = async () => { await logout(); navigate('/profissional/login'); };
+    const handleLogout = async () => { await logout(); navigate('/login'); };
 
     return (
         <div className="prof-layout">
