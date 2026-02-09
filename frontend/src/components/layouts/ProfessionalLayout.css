@@ -1,0 +1,102 @@
+.prof-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg);
+}
+
+.prof-header {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--spacing-md) 0;
+}
+
+.prof-header .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: var(--font-weight-bold);
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-weight: var(--font-weight-medium);
+}
+
+.user-role {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+.logout-btn {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-xs) var(--spacing-md);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+}
+
+.prof-main {
+    flex: 1;
+    padding: var(--spacing-lg) 0 100px;
+}
+
+.prof-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    padding: var(--spacing-sm) 0;
+    padding-bottom: env(safe-area-inset-bottom, var(--spacing-sm));
+}
+
+.prof-nav .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+}
+
+.prof-nav .nav-item.active {
+    color: var(--color-primary);
+}
+
+.prof-nav .nav-icon {
+    font-size: 24px;
+}
+
+.prof-nav .nav-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+}

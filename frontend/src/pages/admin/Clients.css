@@ -1,0 +1,57 @@
+.admin-clients {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.clients-table {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    overflow-x: auto;
+}
+
+.clients-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.clients-table th,
+.clients-table td {
+    padding: var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.clients-table th {
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-sm);
+}
+
+.client-profile {
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+.client-avatar {
+    width: 60px;
+    height: 60px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin: 0 auto var(--spacing-md);
+}
